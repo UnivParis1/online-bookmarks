@@ -6,7 +6,6 @@ let router = express.Router();
 
 router.get("/:name", (req, res) => {
     let name = req.params.name;
-    console.log(name);
     db.findOne({ publicName: name }).then(bookmark => {
         if (bookmark) {
             res.redirect(bookmark.link);
