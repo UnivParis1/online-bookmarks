@@ -23,15 +23,16 @@ var directives = {};
 
 // usage <textarea-with-paste :toadd="a.toadd" v-model="a.a" add-with-space></textarea-with-paste>
 components['textarea-with-paste'] = {
-  template: "<textarea ref='input' :value='value' @input='tellParent'></textarea>",
-  props: ['value', 'toadd', 'addWithSpace'],
+  model: { prop: 'modelValue', event: 'update:modelValue' },
+  template: "<textarea ref='input' :value='modelValue' @input='tellParent'></textarea>",
+  props: ['modelValue', 'toadd', 'addWithSpace'],
   watch: { 'toadd': function (toadd) {
       var element = this.$refs.input;
       insertAtCursor(element, toadd[0], this.addWithSpace === '' || this.addWithSpace === 'true');
       this.tellParent();
   } },
   methods: { tellParent: function () { 
-      this.$emit("input", this.$refs.input.value);
+      this.$emit("update:modelValue", this.$refs.input.value);
   } },
 };
 
