@@ -215,6 +215,7 @@ var methods = {
         }, bookmark));
     },
     deleteBookmark: function(bookmark) {
+        var app = this;
         restdb.set(restdbPath + '/' + bookmark.id, null, {}, handleErr(function() {
 	    app.bookmarks = app.bookmarks.filter(function (b) { return b !== bookmark; });
         }));
