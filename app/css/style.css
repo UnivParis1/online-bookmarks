@@ -14,7 +14,7 @@ a {
     color: #95a1ba;
 }
 
-.BookmarksApp:not(.loaded) {
+.BookmarksApp > :not(.loaded) {
     display: none;
 }
 

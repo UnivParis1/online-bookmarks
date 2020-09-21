@@ -18,8 +18,11 @@ function insertAtCursor(elt, myValue, withSpace) {
     elt.focus();
 }
 
+var components = {};
+var directives = {};
+
 // usage <textarea-with-paste :toadd="a.toadd" v-model="a.a" add-with-space></textarea-with-paste>
-Vue.component('textarea-with-paste', {
+components['textarea-with-paste'] = {
   template: "<textarea ref='input' :value='value' @input='tellParent'></textarea>",
   props: ['value', 'toadd', 'addWithSpace'],
   watch: { 'toadd': function (toadd) {
@@ -30,10 +33,10 @@ Vue.component('textarea-with-paste', {
   methods: { tellParent: function () { 
       this.$emit("input", this.$refs.input.value);
   } },
-});
+};
 
 // emits 'change' event
-Vue.component('input-text-file', {
+components['input-text-file'] = {
     template: "<input @change='read' style='display: none;' type='file'>",
     methods: {
         read: function (e) {
@@ -46,10 +49,10 @@ Vue.component('input-text-file', {
                 fileReader.readAsText(e.target.files[0]);
         },
     },
-});
+};
 
-Vue.directive('auto-focus', {
+directives['auto-focus'] = {
     inserted(el) {
         el.focus();
     }
-});
+};

@@ -237,7 +237,9 @@ var methods = {
 
 app = new Vue({
     name: "Main",
-    data: {
+    components: components,
+    directives: directives,
+    data: function () { return {
         bookmarks: [],
         search: "",
         link_to_add: "",
@@ -247,7 +249,7 @@ app = new Vue({
         
         maxBookmarks: 40,
         publicUrlPrefix: publicUrlPrefix,
-    },
+    } },
 
     mounted: function() {
         var app = this;

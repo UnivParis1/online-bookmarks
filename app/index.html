@@ -27,7 +27,8 @@
     <script> window.prolongation_ENT_args = { current: "signet", layout_url: "https://restdb-test.univ-paris1.fr/EsupUserApps/layout" } </script>
     <script src="https://ent-test.univ-paris1.fr/ProlongationENT/loader.js"></script>
 
-    <div class="container-fluid BookmarksApp" :class="{loaded: loaded}">
+    <div class="container-fluid BookmarksApp">
+     <div :class="{loaded: loaded}">
 
       <div class="row">
 
@@ -157,6 +158,7 @@
             </label>
           </form>
       </div>
+     </div>
     </div>
     <script> app.$mount(".BookmarksApp"); </script>
   </body>
