@@ -27,6 +27,44 @@
     <script> window.prolongation_ENT_args = { current: "signet", layout_url: "https://restdb-test.univ-paris1.fr/EsupUserApps/layout" } </script>
     <script src="https://ent-test.univ-paris1.fr/ProlongationENT/loader.js"></script>
 
+    <script type="text/x-template" id="edit-bookmark">
+        <div class="form-group">
+            <label for="link">Lien</label>
+            <input name="link" type="text" class="form-control" placeholder="http://..." v-model="bookmark.link">
+        </div>
+          
+         <div class="form-group">
+            <label for="name">Nom</label>
+            <input type="text" class="form-control" placeholder="Nom" v-model="bookmark.name" v-auto-focus>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea-with-paste class="form-control" :toadd="bookmark.addtext" add-with-space placeholder="Décrire le site avec des mot clés (#Tags)" v-model="bookmark.description">
+            </textarea-with-paste>
+          </div>
+
+          <div v-if="tags.length" class="suggestionTag">
+           <label> Suggestion de mots clés :</label>
+
+            <span class="badge badge-info myTag" v-for="tag in tags" @click="bookmark.addtext = [tag]">
+              {{tag}}
+            </span>
+          </div>                  
+          
+          <div class="form-group">
+            <div class="checkbox" :class="{ disabled: !bookmark.name }">
+              <label>
+                <input name="public" type="checkbox" placeholder="Public" v-model="bookmark.isPublic" :disabled="!bookmark.name">
+                créer un lien court public <span style="white-space: pre" v-if="bookmark.name">{{publicUrlPrefix}}{{bookmark.name}}</span>
+              </label>
+            </div>
+            <span v-if="!bookmark.name">
+                Pour utiliser la fonctionnalité « lien court », veuillez fournir un « Nom »
+            </span>
+          </div>
+    </script>
+    
     <div class="container-fluid BookmarksApp">
      <div :class="{loaded: loaded}">
 
@@ -72,44 +110,7 @@
             </div>
             <div v-else>
               <form class="editBookmark">
-
-                <div class="form-group">
-                  <label for="link">Lien</label>
-                  <input name="link" type="text" class="form-control" placeholder="http://..." v-model="bookmark.link">
-                </div>
-                
-                <div v-if="bookmark.backup">
-                  <div class="form-group">
-                    <label for="name">Nom</label>
-                    <input type="text" class="form-control" placeholder="Nom" v-model="bookmark.name" v-auto-focus>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea-with-paste class="form-control" :toadd="bookmark.addtext" add-with-space placeholder="Décrire le site avec des mot clés (#Tags)" v-model="bookmark.description">
-                    </textarea-with-paste>
-                  </div>
-
-                  <div v-if="tags.length" class="suggestionTag">
-                   <label> Suggestion de mots clés :</label>
-
-                    <span class="badge badge-info myTag" v-for="tag in tags" @click="bookmark.addtext = [tag]">
-                      {{tag}}
-                    </span>
-                  </div>                  
-                  
-                  <div class="form-group">
-                    <div class="checkbox" :class="{ disabled: !bookmark.name }">
-                      <label>
-                        <input name="public" type="checkbox" placeholder="Public" v-model="bookmark.isPublic" :disabled="!bookmark.name">
-                        créer un lien court public <span style="white-space: pre" v-if="bookmark.name">{{publicUrlPrefix}}{{bookmark.name}}</span>
-                      </label>
-                    </div>
-                    <span v-if="!bookmark.name">
-                        Pour utiliser la fonctionnalité « lien court », veuillez fournir un « Nom »
-                    </span>
-                  </div>
-                </div>
+                <edit-bookmark :tags="tags" :bookmark="bookmark" v-if="bookmark.backup"></edit-bookmark>
 
                 <button type="submit" class="btn btn-primary" @click.prevent="saveBookmark(bookmark)">Sauvegarder</button>
                 <button type="submit" class="btn btn-default" @click.prevent="cancelBookmark(bookmark)">Annuler</button>
