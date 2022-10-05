@@ -182,10 +182,9 @@ function emptyBookmark() {
 }
 
 var methods = {
-    addSimpleBookmark: function(link) {
-        var bookmark = emptyBookmark();
-        bookmark.link = link;
-        this.addBookmark(bookmark);
+    addSimpleBookmark: function() {
+        this.addBookmark(this.to_add)
+        this.to_add = emptyBookmark()
     },
     addBookmark: function(bookmark) {
         var app = this;
@@ -242,7 +241,7 @@ app = Vue.createApp({
     data: function () { return {
         bookmarks: [],
         search: "",
-        link_to_add: "",
+        to_add: emptyBookmark(),
         
         exported: "",
         loaded: false,

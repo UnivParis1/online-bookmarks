@@ -29,22 +29,22 @@
 
     <script type="text/x-template" id="edit-bookmark">
         <div class="form-group">
-            <label for="link">Lien</label>
+            <label for="link" v-if="full">Lien</label>
             <input name="link" type="text" class="form-control" placeholder="http://..." v-model="bookmark.link">
         </div>
           
-         <div class="form-group">
+         <div class="form-group" v-if="full">
             <label for="name">Nom</label>
             <input type="text" class="form-control" placeholder="Nom" v-model="bookmark.name" v-auto-focus>
           </div>
 
-          <div class="form-group">
+          <div class="form-group" v-if="full">
             <label for="description">Description</label>
             <textarea-with-paste class="form-control" :toadd="bookmark.addtext" add-with-space placeholder="Décrire le site avec des mot clés (#Tags)" v-model="bookmark.description">
             </textarea-with-paste>
           </div>
 
-          <div v-if="tags.length" class="suggestionTag">
+          <div v-if="full && tags.length" class="suggestionTag">
            <label> Suggestion de mots clés :</label>
 
             <span class="badge badge-info myTag" v-for="tag in tags" @click="bookmark.addtext = [tag]">
@@ -52,7 +52,7 @@
             </span>
           </div>                  
           
-          <div class="form-group">
+          <div class="form-group" v-if="full">
             <div class="checkbox" :class="{ disabled: !bookmark.name }">
               <label>
                 <input name="public" type="checkbox" placeholder="Public" v-model="bookmark.isPublic" :disabled="!bookmark.name">
@@ -73,13 +73,16 @@
         <div class="bookmarks">
 
           <h2>Ajouter un signet</h2>
-          <form class="addBookmark">
-            <input type="text" class="form-control" placeholder="http://..." v-model="link_to_add" aria-label="Url à ajouter">
+          <div class="bookmark-item">
+            <form class="addBookmark" :class="{ editBookmark: to_add.link }">              
+                <edit-bookmark :tags="tags" :bookmark="to_add" :full="to_add.link"></edit-bookmark>
 
-            <button type="submit" class="btn btn-primary" @click.prevent="addSimpleBookmark(link_to_add)" v-show="link_to_add">
-              <span class="glyphicon glyphicon-plus"></span>
-              Ajouter</button>
-          </form>
+            <span v-show="to_add.link">
+                <button type="submit" class="btn btn-primary" @click.prevent="addSimpleBookmark()">Ajouter</button>
+                <button type="submit" class="btn btn-default" @click.prevent="to_add.link = ''">Annuler</button>
+            </span>
+           </form>
+         </div>
                   
           <div v-if="bookmarks.length == 0" class="alert alert-info">
             Vous n'avez pas de signets.
@@ -110,7 +113,7 @@
             </div>
             <div v-else>
               <form class="editBookmark">
-                <edit-bookmark :tags="tags" :bookmark="bookmark" v-if="bookmark.backup"></edit-bookmark>
+                <edit-bookmark :tags="tags" :bookmark="bookmark" :full="true" v-if="bookmark.backup"></edit-bookmark>
 
                 <button type="submit" class="btn btn-primary" @click.prevent="saveBookmark(bookmark)">Sauvegarder</button>
                 <button type="submit" class="btn btn-default" @click.prevent="cancelBookmark(bookmark)">Annuler</button>

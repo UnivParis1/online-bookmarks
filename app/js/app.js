@@ -60,7 +60,7 @@ directives['auto-focus'] = {
 
 components['edit-bookmark'] = {
     template: '#edit-bookmark',
-    props: ['bookmark', 'tags'],
+    props: ['bookmark', 'tags', 'full'],
     computed: {
         publicUrlPrefix: () => publicUrlPrefix,
     },
