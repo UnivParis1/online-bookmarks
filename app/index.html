@@ -56,7 +56,11 @@
             <div class="checkbox" :class="{ disabled: !bookmark.name }">
               <label>
                 <input name="public" type="checkbox" placeholder="Public" v-model="bookmark.isPublic" :disabled="!bookmark.name">
-                créer un lien court public <span style="white-space: pre" v-if="bookmark.name">{{publicUrlPrefix}}{{bookmark.name}}</span>
+                créer un lien court public 
+                <span style="white-space: pre" v-if="bookmark.name && bookmark.isPublic">{{publicUrlPrefix}}{{bookmark.name}}
+                    <span class="glyphicon glyphicon-copy" @click.prevent="copyToClipboard(bookmark)"></span>
+                    <span v-if="warn_copied">Copié !</span>
+                </span>
               </label>
             </div>
             <span v-if="!bookmark.name">

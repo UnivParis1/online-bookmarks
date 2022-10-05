@@ -111,6 +111,10 @@ a {
     -webkit-mask: url(../../node_modules/@fortawesome/fontawesome-free/svgs/solid/file-export.svg) center / contain no-repeat;  
     mask: url(../../node_modules/@fortawesome/fontawesome-free/svgs/solid/file-export.svg) center / contain no-repeat;  
 }
+.glyphicon-copy::before {
+    -webkit-mask: url(../../node_modules/@fortawesome/fontawesome-free/svgs/regular/copy.svg) center / contain no-repeat;  
+    mask: url(../../node_modules/@fortawesome/fontawesome-free/svgs/regular/copy.svg) center / contain no-repeat;  
+}
 
 
 
