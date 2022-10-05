@@ -3,9 +3,9 @@
   "description": "Online bookmarks",
   "version": "0.0.1",
   "dependencies": {
-    "vue": "^2.2.1",
     "@fortawesome/fontawesome-free": "^5.12.0",
     "express": "4.x",
-    "mongodb": "^2.1.18"
+    "mongodb": "^2.1.18",
+    "vue": "^3.0.1"
   }
 }

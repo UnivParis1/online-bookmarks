@@ -235,7 +235,7 @@ var methods = {
 
 };
 
-app = new Vue({
+app = Vue.createApp({
     name: "Main",
     components: components,
     directives: directives,
