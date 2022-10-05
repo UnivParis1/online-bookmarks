@@ -10,8 +10,8 @@ const collection = () => {
   return real_collection;
 };
 
-exports.findOne = (criteria) => (
-    collection().findOne(criteria)
+exports.findOneAndUpdate = (criteria, update) => (
+    collection().findOneAndUpdate(criteria, update)
 );
 
 exports.init = () => {

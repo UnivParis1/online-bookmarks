@@ -6,7 +6,10 @@ let router = express.Router();
 
 router.get("/:name", (req, res) => {
     let name = req.params.name;
-    db.findOne({ publicName: name }).then(bookmark => {
+
+    let $inc = { count: 1 }
+    db.findOneAndUpdate({ publicName: name }, { $inc }).then(r => {
+        const bookmark = r.value
         if (bookmark) {
             res.redirect(bookmark.link);
         } else {

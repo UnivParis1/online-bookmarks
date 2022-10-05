@@ -96,7 +96,9 @@
                 <span style="float: right" class="glyphicon glyphicon-trash" @click="deleteBookmark(bookmark)"></span>
                 <span style="float: right" class="glyphicon glyphicon-pencil" @click="editBookmark(bookmark)"></span>
                 <a :href="bookmark.isPublic && bookmark.name ? publicUrlPrefix + bookmark.name : bookmark.link" target="_blank">{{bookmark.name || bookmark.link}}</a>
-                <small v-if="bookmark.name">| {{bookmark.link}}</small>
+                <small v-if="bookmark.name">
+                    <span class="count" v-if="bookmark.isPublic">{{bookmark.count || 0}}</span>
+                    <span v-else>|</span> {{bookmark.link}}</small>
               </span>
 
               <div class="description" v-if="bookmark.description">

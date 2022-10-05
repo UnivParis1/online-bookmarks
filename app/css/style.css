@@ -451,4 +451,14 @@ div > .bookmark-item button.btn.btn-default:hover, .btn-default:hover {
     font-size: 14px;
 }
 
-
+.count {
+    display: inline-block;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #777;
+    border-radius: 10px;
+}
