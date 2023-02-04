@@ -214,6 +214,7 @@ var methods = {
         }, bookmark));
     },
     deleteBookmark: function(bookmark) {
+        if (!confirm("Supprimer le signet " + (bookmark.name ? "« " + bookmark.name + " »" : bookmark.link) + " ?")) return;
         var app = this;
         restdb.set(restdbPath + '/' + bookmark.id, null, {}, handleErr(function() {
 	    app.bookmarks = app.bookmarks.filter(function (b) { return b !== bookmark; });
