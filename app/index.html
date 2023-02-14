@@ -99,6 +99,8 @@
               <span class="title">
                 <span style="float: right" class="glyphicon glyphicon-trash" @click="deleteBookmark(bookmark)"></span>
                 <span style="float: right" class="glyphicon glyphicon-pencil" @click="editBookmark(bookmark)"></span>
+                <span style="float: right" v-if="bookmark.isPublic" class="glyphicon glyphicon-copy" @click.prevent="copyToClipboard(bookmark)"></span>
+                <small style="float: right" v-if="bookmark.warn_copied">Copié !&nbsp;</small>
                 <a :href="bookmark.isPublic && bookmark.name ? publicUrlPrefix + bookmark.name : bookmark.link" target="_blank">{{bookmark.name || bookmark.link}}</a>
                 <small v-if="bookmark.name">
                     <span class="count" v-if="bookmark.isPublic">{{bookmark.count || 0}}</span>

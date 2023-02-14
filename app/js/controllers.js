@@ -221,6 +221,7 @@ var methods = {
 	    app.bookmarks = app.bookmarks.filter(function (b) { return b !== bookmark; });
         }));
     },
+    copyToClipboard,
 
     exportBookmarks: function (event) {
         event.target.href = "data:text/html;charset=utf-8," + encodeURIComponent(exportNetscapeBookmarks(this.bookmarks));
