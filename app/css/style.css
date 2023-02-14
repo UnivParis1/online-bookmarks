@@ -284,10 +284,10 @@ h2 {
 
 .bookmark-item .glyphicon:hover {
     cursor: pointer;
-    background-color: #e55302;
-}
-.bookmark-item .title .glyphicon-pencil:hover {
     background-color: #c89108;
+}
+.bookmark-item .title .glyphicon-trash:hover {
+    background-color: #e55302;
 }
 
 .bookmark-item .title a {
