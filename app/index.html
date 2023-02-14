@@ -58,7 +58,7 @@
                 <input name="public" type="checkbox" placeholder="Public" v-model="bookmark.isPublic" :disabled="!bookmark.name">
                 créer un lien court public 
                 <span style="white-space: pre" v-if="bookmark.name && bookmark.isPublic">{{publicUrlPrefix}}{{bookmark.name}}
-                    <span class="glyphicon glyphicon-copy" @click.prevent="copyToClipboard(bookmark)"></span>
+                    <span class="glyphicon glyphicon-copy" title="Copier" @click.prevent="copyToClipboard(bookmark)"></span>
                     <span v-if="bookmark.warn_copied">Copié !</span>
                 </span>
               </label>
@@ -97,9 +97,9 @@
           <div class="bookmark-item" v-for="bookmark in bookmarksToDisplay">
             <div v-if="!bookmark.edit">
               <span class="title">
-                <span style="float: right" class="glyphicon glyphicon-trash" @click="deleteBookmark(bookmark)"></span>
-                <span style="float: right" class="glyphicon glyphicon-pencil" @click="editBookmark(bookmark)"></span>
-                <span style="float: right" v-if="bookmark.isPublic" class="glyphicon glyphicon-copy" @click.prevent="copyToClipboard(bookmark)"></span>
+                <span style="float: right" title="Supprimer" class="glyphicon glyphicon-trash" @click="deleteBookmark(bookmark)"></span>
+                <span style="float: right" title="Modifier" class="glyphicon glyphicon-pencil" @click="editBookmark(bookmark)"></span>
+                <span style="float: right" title="Copier" v-if="bookmark.isPublic" class="glyphicon glyphicon-copy" @click.prevent="copyToClipboard(bookmark)"></span>
                 <small style="float: right" v-if="bookmark.warn_copied">Copié !&nbsp;</small>
                 <a :href="bookmark.isPublic && bookmark.name ? publicUrlPrefix + bookmark.name : bookmark.link" target="_blank">{{bookmark.name || bookmark.link}}</a>
                 <small v-if="bookmark.name">
