@@ -59,7 +59,7 @@
                 créer un lien court public 
                 <span style="white-space: pre" v-if="bookmark.name && bookmark.isPublic">{{publicUrlPrefix}}{{bookmark.name}}
                     <span class="glyphicon glyphicon-copy" @click.prevent="copyToClipboard(bookmark)"></span>
-                    <span v-if="warn_copied">Copié !</span>
+                    <span v-if="bookmark.warn_copied">Copié !</span>
                 </span>
               </label>
             </div>

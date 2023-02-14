@@ -123,6 +123,7 @@ function parseBookmark(bookmark) {
     bookmark.addtext = [];
     bookmark.isPublic = !!bookmark.publicName;
     bookmark.edit = false;
+    bookmark.warn_copied = false;
     return assign(emptyBookmark(), bookmark);
 }
 

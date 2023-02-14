@@ -58,24 +58,23 @@ directives['auto-focus'] = {
     }
 };
 
+function copyToClipboard(bookmark) {
+    navigator.clipboard.writeText(publicUrlPrefix + bookmark.name).then(_ => {
+        bookmark.warn_copied = true
+        setTimeout(_ => bookmark.warn_copied = false, 1000)
+    })
+}
+
 components['edit-bookmark'] = {
     template: '#edit-bookmark',
     props: ['bookmark', 'tags', 'full'],
-    data() {
-        return { warn_copied: false }
-    },
     computed: {
         publicUrlPrefix: () => publicUrlPrefix,
     },
     components: components,
     directives: directives,
     methods: {
-        copyToClipboard(bookmark) {
-            navigator.clipboard.writeText(publicUrlPrefix + bookmark.name).then(_ => {
-                this.warn_copied = true
-                setTimeout(_ => this.warn_copied = false, 1000)
-            })
-        },
+        copyToClipboard,
     },
 }
 
