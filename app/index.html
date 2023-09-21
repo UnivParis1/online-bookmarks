@@ -40,7 +40,7 @@
 
           <div class="form-group" v-if="full">
             <label for="description">Description</label>
-            <textarea-with-paste class="form-control" :toadd="bookmark.addtext" add-with-space placeholder="Décrire le site avec des mot clés (#Tags)" v-model="bookmark.description">
+            <textarea-with-paste @keydown.ctrl.enter='$emit("submit")' class="form-control" :toadd="bookmark.addtext" add-with-space placeholder="Décrire le site avec des mot clés (#Tags)" v-model="bookmark.description">
             </textarea-with-paste>
           </div>
 
@@ -79,7 +79,7 @@
           <h2>Ajouter un signet</h2>
           <div class="bookmark-item">
             <form class="addBookmark" :class="{ editBookmark: to_add.link }">              
-                <edit-bookmark :tags="tags" :bookmark="to_add" :full="to_add.link"></edit-bookmark>
+                <edit-bookmark :tags="tags" :bookmark="to_add" :full="to_add.link" @submit="addSimpleBookmark()"></edit-bookmark>
 
             <span v-show="to_add.link">
                 <button type="submit" class="btn btn-primary" @click.prevent="addSimpleBookmark()">Ajouter</button>
@@ -121,7 +121,7 @@
             </div>
             <div v-else>
               <form class="editBookmark">
-                <edit-bookmark :tags="tags" :bookmark="bookmark" :full="true" v-if="bookmark.backup"></edit-bookmark>
+                <edit-bookmark :tags="tags" :bookmark="bookmark" :full="true" v-if="bookmark.backup" @submit="saveBookmark(bookmark)"></edit-bookmark>
 
                 <button type="submit" class="btn btn-primary" @click.prevent="saveBookmark(bookmark)">Sauvegarder</button>
                 <button type="submit" class="btn btn-default" @click.prevent="cancelBookmark(bookmark)">Annuler</button>

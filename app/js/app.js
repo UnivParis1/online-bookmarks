@@ -68,6 +68,7 @@ function copyToClipboard(bookmark) {
 components['edit-bookmark'] = {
     template: '#edit-bookmark',
     props: ['bookmark', 'tags', 'full'],
+    emits: ['submit'],
     computed: {
         publicUrlPrefix: () => publicUrlPrefix,
     },
