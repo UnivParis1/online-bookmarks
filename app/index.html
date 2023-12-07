@@ -145,8 +145,8 @@
 
             <h2>Rechercher</h2>
 
-            <input autofocus type="text" class="form-control" placeholder="Des mots..." v-model="search" aria-label="Mots à rechercher dans vos signets">
-            
+            <input autofocus type="text" style="display: inline-block" class="form-control" placeholder="Des mots..." v-model="search" aria-label="Mots à rechercher dans vos signets">
+            <button v-if="search" style="margin-left: -1.2em; border: none; background: transparent;" @click.prevent="search = ''">x</button>
             <div class="listOfTags">
                 <span v-for="tag in tags">
                     <a @click.prevent="search = (search === tag ? '' : tag)" class="badge badge-info myTag" :class="{ selectedTag: search === tag }">{{tag}}</a>
