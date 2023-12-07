@@ -243,7 +243,7 @@ app = Vue.createApp({
     directives: directives,
     data: function () { return {
         bookmarks: [],
-        search: "",
+        search: ((document.location.hash || '').match(/^#(.*)/) || [])[1] || '',
         to_add: emptyBookmark(),
         
         exported: "",
