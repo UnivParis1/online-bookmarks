@@ -267,11 +267,14 @@ app = Vue.createApp({
     computed: {
         filteredBookmarks: function() {
             var l = this.bookmarks;
- 	    if (this.search) {
- 	        var regex = new RegExp(this.search, "i");
+            if (this.search) {
+                let search = this.search.match(/-?(.*)/)[1]
+                let negation = this.search !== search
+                var regex = new RegExp(search, "i");
                 return l.filter(function (bm) {
-	            return regex.test(bm.name) || regex.test(bm.link) || regex.test(bm.description);
-	        });
+                    let b = regex.test(bm.name) || regex.test(bm.link) || regex.test(bm.description);
+                    return negation ? !b : b
+                });
             } else {
                 return l;
             }

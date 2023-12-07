@@ -149,7 +149,7 @@
             <button v-if="search" style="margin-left: -1.2em; border: none; background: transparent;" @click.prevent="search = ''">x</button>
             <div class="listOfTags">
                 <span v-for="tag in tags">
-                    <a @click.prevent="search = (search === tag ? '' : tag)" class="badge badge-info myTag" :class="{ selectedTag: search === tag }">{{tag}}</a>
+                    <a @click.prevent="search = (search === tag ? '-' + tag : tag)" class="badge badge-info myTag" :class="{ selectedTag: search === tag }">{{tag}}</a>
                 </span>
             </div>
 
