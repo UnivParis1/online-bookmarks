@@ -76,6 +76,7 @@ components['edit-bookmark'] = {
     directives: directives,
     methods: {
         copyToClipboard,
+        externalQrcodeEncoder,
     },
 }
 

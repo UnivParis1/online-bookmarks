@@ -15,6 +15,7 @@
        var restdbConf = { url: "https://restdb.univ-paris1.fr", auth: "cas" };
        var restdbPath = "/signets/bookmarks/$user";
        var publicUrlPrefix = 'https://signets-test.univ-paris1.fr/public-name/';
+       var externalQrcodeEncoder = (url) => 'https://qrcode.univ-paris1.fr/?txt=' + encodeURIComponent(url)
     </script>
     <script src="https://restdb-test.univ-paris1.fr/.files/restdb.js"></script>
 
@@ -30,6 +31,8 @@
     <script type="text/x-template" id="edit-bookmark">
         <div class="form-group">
             <label for="link" v-if="full">Lien</label>
+            &nbsp;
+            <a target="_blank" v-if="bookmark.link.match(/^https?:\/\/./)" :href="externalQrcodeEncoder(bookmark.link)"><span class="glyphicon glyphicon-qrcode" title="Générer un code QR"></span></a>
             <input name="link" type="text" class="form-control" placeholder="http://..." v-model="bookmark.link">
         </div>
           
@@ -60,6 +63,7 @@
                 <span style="white-space: pre" v-if="bookmark.name && bookmark.isPublic">{{publicUrlPrefix}}{{bookmark.name}}
                     <span class="glyphicon glyphicon-copy" title="Copier" @click.prevent="copyToClipboard(bookmark)"></span>
                     <span v-if="bookmark.warn_copied">Copié !</span>
+                    <a target="_blank" :href="externalQrcodeEncoder(publicUrlPrefix + bookmark.name)"><span class="glyphicon glyphicon-qrcode" title="Générer un code QR"></span></a>
                 </span>
               </label>
             </div>
@@ -100,6 +104,7 @@
                 <span style="float: right" title="Supprimer" class="glyphicon glyphicon-trash" @click="deleteBookmark(bookmark)"></span>
                 <span style="float: right" title="Modifier" class="glyphicon glyphicon-pencil" @click="editBookmark(bookmark)"></span>
                 <span style="float: right" title="Copier" v-if="bookmark.isPublic" class="glyphicon glyphicon-copy" @click.prevent="copyToClipboard(bookmark)"></span>
+                <a style="float:right" target="_blank" v-if="bookmark.isPublic" :href="externalQrcodeEncoder(publicUrlPrefix + bookmark.name)"><span class="glyphicon glyphicon-qrcode" title="Générer un code QR"></span></a>
                 <small style="float: right" v-if="bookmark.warn_copied">Copié !&nbsp;</small>
                 <a :href="bookmark.isPublic && bookmark.name ? publicUrlPrefix + bookmark.name : bookmark.link" target="_blank">{{bookmark.name || bookmark.link}}</a>
                 <small v-if="bookmark.name">

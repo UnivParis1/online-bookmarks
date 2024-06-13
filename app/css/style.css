@@ -115,6 +115,10 @@ a {
     -webkit-mask: url(../../node_modules/@fortawesome/fontawesome-free/svgs/regular/copy.svg) center / contain no-repeat;  
     mask: url(../../node_modules/@fortawesome/fontawesome-free/svgs/regular/copy.svg) center / contain no-repeat;  
 }
+.glyphicon-qrcode::before {
+    -webkit-mask: url(../../node_modules/@fortawesome/fontawesome-free/svgs/solid/qrcode.svg) center / contain no-repeat;
+    mask: url(../../node_modules/@fortawesome/fontawesome-free/svgs/solid/qrcode.svg) center / contain no-repeat;
+}
 
 
 

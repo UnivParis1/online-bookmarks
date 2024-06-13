@@ -222,6 +222,7 @@ var methods = {
         }));
     },
     copyToClipboard,
+    externalQrcodeEncoder,
 
     exportBookmarks: function (event) {
         event.target.href = "data:text/html;charset=utf-8," + encodeURIComponent(exportNetscapeBookmarks(this.bookmarks));
