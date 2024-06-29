@@ -222,6 +222,7 @@ var methods = {
         }));
     },
     copyToClipboard,
+    toUrl,
     externalQrcodeEncoder,
 
     exportBookmarks: function (event) {

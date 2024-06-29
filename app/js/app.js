@@ -58,8 +58,12 @@ directives['auto-focus'] = {
     }
 };
 
+function toUrl(bookmark) {
+    return bookmark.isPublic && bookmark.name ? publicUrlPrefix + bookmark.name : bookmark.link
+}
+
 function copyToClipboard(bookmark) {
-    navigator.clipboard.writeText(publicUrlPrefix + bookmark.name).then(_ => {
+    navigator.clipboard.writeText(toUrl(bookmark)).then(_ => {
         bookmark.warn_copied = true
         setTimeout(_ => bookmark.warn_copied = false, 1000)
     })
@@ -76,6 +80,7 @@ components['edit-bookmark'] = {
     directives: directives,
     methods: {
         copyToClipboard,
+        toUrl,
         externalQrcodeEncoder,
     },
 }

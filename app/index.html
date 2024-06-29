@@ -63,7 +63,7 @@
                 <span style="white-space: pre" v-if="bookmark.name && bookmark.isPublic">{{publicUrlPrefix}}{{bookmark.name}}
                     <span class="glyphicon glyphicon-copy" title="Copier" @click.prevent="copyToClipboard(bookmark)"></span>
                     <span v-if="bookmark.warn_copied">Copié !</span>
-                    <a target="_blank" :href="externalQrcodeEncoder(publicUrlPrefix + bookmark.name)"><span class="glyphicon glyphicon-qrcode" title="Générer un code QR"></span></a>
+                    <a target="_blank" :href="externalQrcodeEncoder(toUrl(bookmark))"><span class="glyphicon glyphicon-qrcode" title="Générer un code QR"></span></a>
                 </span>
               </label>
             </div>
@@ -104,9 +104,9 @@
                 <span style="float: right" title="Supprimer" class="glyphicon glyphicon-trash" @click="deleteBookmark(bookmark)"></span>
                 <span style="float: right" title="Modifier" class="glyphicon glyphicon-pencil" @click="editBookmark(bookmark)"></span>
                 <span style="float: right" title="Copier" v-if="bookmark.isPublic" class="glyphicon glyphicon-copy" @click.prevent="copyToClipboard(bookmark)"></span>
-                <a style="float:right" target="_blank" v-if="bookmark.isPublic" :href="externalQrcodeEncoder(publicUrlPrefix + bookmark.name)"><span class="glyphicon glyphicon-qrcode" title="Générer un code QR"></span></a>
+                <a style="float:right" target="_blank" v-if="bookmark.isPublic" :href="externalQrcodeEncoder(toUrl(bookmark))"><span class="glyphicon glyphicon-qrcode" title="Générer un code QR"></span></a>
                 <small style="float: right" v-if="bookmark.warn_copied">Copié !&nbsp;</small>
-                <a :href="bookmark.isPublic && bookmark.name ? publicUrlPrefix + bookmark.name : bookmark.link" target="_blank">{{bookmark.name || bookmark.link}}</a>
+                <a :href="toUrl(bookmark)" target="_blank">{{bookmark.name || bookmark.link}}</a>
                 <small v-if="bookmark.name">
                     <span class="count" v-if="bookmark.isPublic">{{bookmark.count || 0}}</span>
                     <span v-else>|</span> {{bookmark.link}}</small>
