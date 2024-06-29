@@ -103,8 +103,8 @@
               <span class="title">
                 <span style="float: right" title="Supprimer" class="glyphicon glyphicon-trash" @click="deleteBookmark(bookmark)"></span>
                 <span style="float: right" title="Modifier" class="glyphicon glyphicon-pencil" @click="editBookmark(bookmark)"></span>
-                <span style="float: right" title="Copier" v-if="bookmark.isPublic" class="glyphicon glyphicon-copy" @click.prevent="copyToClipboard(bookmark)"></span>
-                <a style="float:right" target="_blank" v-if="bookmark.isPublic" :href="externalQrcodeEncoder(toUrl(bookmark))"><span class="glyphicon glyphicon-qrcode" title="Générer un code QR"></span></a>
+                <span style="float: right" title="Copier" class="glyphicon glyphicon-copy" @click.prevent="copyToClipboard(bookmark)"></span>
+                <a style="float:right" target="_blank" :href="externalQrcodeEncoder(toUrl(bookmark))"><span class="glyphicon glyphicon-qrcode" title="Générer un code QR"></span></a>
                 <small style="float: right" v-if="bookmark.warn_copied">Copié !&nbsp;</small>
                 <a :href="toUrl(bookmark)" target="_blank">{{bookmark.name || bookmark.link}}</a>
                 <small v-if="bookmark.name">
