@@ -184,8 +184,10 @@ function emptyBookmark() {
 
 var methods = {
     addSimpleBookmark: function() {
-        this.addBookmark(this.to_add)
-        this.to_add = emptyBookmark()
+        if (this.to_add.link) {
+            this.addBookmark(this.to_add)
+            this.to_add = emptyBookmark()
+        }
     },
     addBookmark: function(bookmark) {
         var app = this;
