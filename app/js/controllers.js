@@ -277,7 +277,7 @@ app = Vue.createApp({
                 var regex = new RegExp(search, "i");
                 return l.filter(function (bm) {
                     let b = regex.test(bm.name) || regex.test(bm.link) || regex.test(bm.description);
-                    return negation ? !b : b
+                    return bm.edit || (negation ? !b : b)
                 });
             } else {
                 return l;
