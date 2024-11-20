@@ -16,7 +16,7 @@ exports.findOneAndUpdate = (criteria, update) => (
 
 exports.init = () => {
     return mongodb.MongoClient.connect(conf.mongodb.url).then(client => {
-        real_collection = client.collection('bookmarks');
+        real_collection = client.db().collection('bookmarks');
     }).then(() => {
         return collection().createIndex({ publicName: 1 }, { unique: true, sparse: true });
     }).catch((error) => {
