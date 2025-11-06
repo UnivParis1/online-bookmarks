@@ -153,7 +153,7 @@ function computeHashes(bookmarks) {
 }
 
 function normalizeLink(link) {
-        return link.match(/^https?:/) ? link : "http://" + link;
+        return link.match(/^[a-z]+:/) ? link : "http://" + link;
 }
 function toWS(bookmark) {
         var o = objectSlice(bookmark, [ 'link', 'name', 'description' ]);
